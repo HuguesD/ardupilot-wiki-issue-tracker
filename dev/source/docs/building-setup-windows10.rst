@@ -36,6 +36,31 @@ WSL Setup Steps
 
     * To reload the path variables in WSL either close the terminal and reopen it or use: ``logout``
 
+#. Alternatively, if you cannot install Ubuntu from the Microsoft store (because you disabled the store for example), then you can follow these steps instead:
+
+Before launching the Ubuntu installation in WSL (in a windows cmd window: wsl --install -d Ubuntu),
+you need the following pre-requisites (they should be added in the Ardupilot wiki explaining how to install SITIL/MavProxy in Windows 10):
+
+1-In the BIOS of your computer, you must first activate virtualization technology. It is usually found in your BIOS “advanced CPU” menu.
+
+2-Then you reboot the machine and you must now activate the virtualization feature in Windows 10. To do this, the simplest is to right-click on the windows powershell icon/menu to start it with “run as administrator” rights. This will open a powershell with elevated admin rights.
+Then copy this command to enabel virtualization in windows 10:
+
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+Then reboot your machine.
+
+3-Open a cmd window
+
+4-Launch the installation of Ubuntu , by choosing one of the two following commands, depending if you want a WSL1 or WSL2 underlaying linux virtualization. WSL2 is faster than WSL1.
+
+wsl --set-version Ubuntu 1
+wsl --set-version Ubuntu 2
+
+5-Install Ubuntu in WSL:
+
+wsl --install -d Ubuntu
+
 #. Install an XWindows application to run graphical programs such as SITL by installing `VcXsrv <https://sourceforge.net/projects/vcxsrv/>`_, `Cygwin X <https://x.cygwin.com/>`_ or `Xming <https://sourceforge.net/projects/xming/>`_ on Windows.
 
 #. Open the "Ubuntu" application and add the following to the end of ``~/.bashrc``. Be sure to comment and uncomment the appropriate lines depending on if you are using WSL1 or WSL2 (if in doubt, WSL1 is the default)
